@@ -2,18 +2,13 @@ services:
   - type: web
     name: mlbb-api-server
     env: node
-    region: singapore  # Asia region ကိုရွေး
+    region: singapore
     plan: free
-    buildCommand: npm install
-    startCommand: npm start
+    rootDirectory: api  # အရေးကြီးပါသည်!
+    buildCommand: cd api && yarn
+    startCommand: cd api && yarn start
     healthCheckPath: /health
     autoDeploy: true
     envVars:
       - key: NODE_VERSION
         value: 18.x
-      - key: PORT
-        value: 10000
-    headers:
-      - path: /*
-        name: Cache-Control
-        value: no-cache, no-store, must-revalidate
